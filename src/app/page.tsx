@@ -1,103 +1,187 @@
-import Image from "next/image";
+"use client";
+import {
+  Flex,
+  Layout,
+  Col,
+  Row,
+  Divider,
+  Button,
+  Watermark,
+  Alert,
+} from "antd";
+const { Header, Footer, Sider, Content } = Layout;
+import ModalDialog from "@/app/components/Modal";
+import Notification from "@/app/components/Notify";
+import Segment from "@/app/components/Segment";
+import Menu from "@/app/components/Menu";
+// import { useState } from "react";
+const headerStyle: React.CSSProperties = {
+  textAlign: "center",
+  minWidth: "100%",
+  color: "#fff",
+  height: 64,
+  paddingInline: 48,
+  lineHeight: "64px",
+  backgroundColor: "#4096ff",
+};
 
+const contentStyle: React.CSSProperties = {
+  textAlign: "center",
+  minHeight: 120,
+  lineHeight: "120px",
+  color: "#fff",
+  // backgroundColor: "#0958d9",
+};
+
+const siderStyle: React.CSSProperties = {
+  textAlign: "center",
+  lineHeight: "120px",
+  color: "#fff",
+  backgroundColor: "#1677ff",
+  height: "100%",
+};
+
+const footerStyle: React.CSSProperties = {
+  textAlign: "center",
+  color: "#fff",
+  backgroundColor: "#4096ff",
+};
+
+const layoutStyle = {
+  borderRadius: 8,
+  overflow: "hidden",
+  // width: "calc(50% - 8px)",
+  // maxWidth: "calc(50% - 8px)",
+};
 export default function Home() {
+  // const [size, setSize] = useState<SizeType>("large"); // default is 'middle
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <Flex gap="middle" wrap>
+      <Layout style={layoutStyle}>
+        <Header style={headerStyle}>
+          <Button type="primary" href="/mobile">
+            Go to Mobile
+          </Button>
+          <Button type="primary" href="/mobile2">
+            Mobile 2
+          </Button>
+        </Header>
+        <Layout>
+          <Sider width="15%" style={siderStyle}>
+            <Row>
+              <Col>
+                <Menu />
+              </Col>
+            </Row>
+          </Sider>
+          <Content style={contentStyle}>
+            <Row>
+              <Col
+                span={12}
+                className="text-amber-500 border-8 text-black gutter-row"
+              >
+                <div className="text-4xl">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Consequatur debitis iste odit deleniti similique, illum
+                  dolores voluptatibus temporibus tempora eaque sunt, labore
+                  rerum fugiat eveniet, maiores natus enim. Eius, tempore.
+                </div>
+              </Col>
+              <Col
+                span={12}
+                className="text-amber-500 border-8  text-black gutter-row"
+              >
+                <div className="text-4xl">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Fugit sequi, distinctio, dignissimos ducimus adipisci
+                  voluptatem dolor quis quidem non magnam a officiis provident
+                  quae dolorem quas facere iusto ipsam animi.
+                </div>
+              </Col>
+            </Row>
+            <Divider orientation="left">Horizontal</Divider>
+            <Row gutter={32}>
+              <Col lg={12} span={24} className="gutter-row">
+                <div className="text-amber-500 border-8 text-4xl text-black ">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
+                  fugit quisquam repellendus doloribus libero, numquam iure
+                  itaque, natus labore sint temporibus corrupti inventore minus
+                  aut adipisci? Nam non itaque fuga?
+                </div>
+              </Col>
+              <Col lg={12} span={24} className="gutter-row">
+                <div className="text-amber-500 border-8 text-4xl text-black">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
+                  fugit quisquam repellendus doloribus libero, numquam iure
+                  itaque, natus labore sint temporibus corrupti inventore minus
+                  aut adipisci? Nam non itaque fuga?
+                </div>
+              </Col>
+            </Row>
+            <Divider orientation="left">Horizontal</Divider>
+            <Row>
+              <Col span={24}>
+                <Watermark content="Ant Design">
+                  <Flex justify={"space-evenly"} gap="small">
+                    <Button type="primary" size={"large"}>
+                      Primary
+                    </Button>
+                    <Button type="primary" size={"large"}>
+                      Primary
+                    </Button>
+                  </Flex>
+                </Watermark>
+              </Col>
+            </Row>
+            <Divider orientation="left">Horizontal</Divider>
+            <Row>
+              <Col span={12}>
+                <Button style={{ width: "50%" }} type="primary">
+                  Go to Home
+                </Button>
+              </Col>
+              <Col span={12}>
+                <Button
+                  href="/about"
+                  style={{ width: "50%", backgroundColor: "red" }}
+                  type="primary"
+                >
+                  Go to About
+                </Button>
+              </Col>
+            </Row>
+            <Divider orientation="left">Horizontal</Divider>
+            <Row>
+              <Col span={12}>
+                <Alert message="Success Text" type="success" />;
+                <Alert
+                  message="Warning Text Warning Text Warning TextW arning Text Warning Text Warning TextWarning Text"
+                  type="warning"
+                  closable
+                  onClose={() => console.log("good!!!")}
+                />
+              </Col>
+              <Col span={12}></Col>
+            </Row>
+            <Divider>Modal</Divider>
+            <Row>
+              <Col>
+                <ModalDialog />
+              </Col>
+              <Col>
+                <Notification />
+              </Col>
+            </Row>
+            <Divider>Segment</Divider>
+            <Row>
+              <Col>
+                <Segment />
+              </Col>
+            </Row>
+          </Content>
+        </Layout>
+        <Footer style={footerStyle}>Footer</Footer>
+      </Layout>
+    </Flex>
   );
 }
